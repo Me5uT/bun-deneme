@@ -1,5 +1,5 @@
-import { IAdminModel, ITenant } from 'app/shared/model/tenant.model';
-import { IVersion } from './version.model';
+import { IAdminModel, ITenant } from "./tenant.model";
+import { IVersion } from "./version.model";
 
 export interface ILicenceHistory {
   id?: number;

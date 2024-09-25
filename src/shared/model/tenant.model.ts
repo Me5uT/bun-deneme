@@ -1,5 +1,5 @@
-import { IVersion } from 'app/shared/model/version.model';
-import { ILicenceHistory } from './licence-history.model';
+import { IVersion } from "./version.model";
+import { ILicenceHistory } from "./licence-history.model";
 export const defaultValue: Readonly<ITenant | ITenantDetail> = {
   isSupportActive: false,
   isActive: false,
@@ -98,10 +98,10 @@ export enum TenantTypeInt {
   PARTNER,
 }
 export enum TenantTypeStr {
-  ENDUSER = 'END USER',
-  MSSP = 'MSSP',
-  MIRKET = 'MIRKET',
-  PARTNER = 'PARTNER',
+  ENDUSER = "END USER",
+  MSSP = "MSSP",
+  MIRKET = "MIRKET",
+  PARTNER = "PARTNER",
 }
 export enum TenantStatusInt {
   Active,
@@ -114,9 +114,9 @@ export enum LicenceTypeInt {
   SSO,
 }
 export const LicenceType = {
-  Demo: 'Demo',
-  MFA: 'MFA',
-  SSO: 'MFA + SSO',
+  Demo: "Demo",
+  MFA: "MFA",
+  SSO: "MFA + SSO",
 };
 export enum LicenceStatusInt {
   Active,

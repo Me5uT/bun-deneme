@@ -73,7 +73,7 @@ export const ActivationToken = () => {
         >
           <img
             width={200}
-            src={"src/assets/images/mirket2020_Logotype-Dark.png"}
+            src={"/assets/images/mirket2020_Logotype-Dark.png"}
             alt="mirket-logo"
           />
 

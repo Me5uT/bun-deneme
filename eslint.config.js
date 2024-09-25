@@ -13,10 +13,10 @@ export default tseslint.config(
       ecmaVersion: 2020,
       globals: globals.browser,
     },
-    plugins: {
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
-    },
+    // plugins: {
+    //   "react-hooks": reactHooks,
+    //   "react-refresh": reactRefresh,
+    // },
     rules: {
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": [
@@ -24,6 +24,8 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "@typescript-eslint/no-explicit-any": "off",
+      "react-refresh/only-export-components": "off",
+      "typescript-eslint/no-unused-vars": "off",
     },
   }
 );

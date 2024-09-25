@@ -1,4 +1,4 @@
-import { Storage } from "app/shared/util/LocalStorage";
+import { Storage } from "../util/LocalStorage";
 import {
   ILocalStoragePortalModel,
   ILocalStorageTenantModel,

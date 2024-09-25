@@ -1,6 +1,5 @@
-import dayjs from 'dayjs';
-import { ITenant } from 'app/shared/model/tenant.model';
-import { IGateway } from 'app/shared/model/gateway.model';
+import { ITenant } from "./tenant.model";
+import { IGateway } from "./gateway.model";
 
 export interface IParticipantGroup {
   id?: number;

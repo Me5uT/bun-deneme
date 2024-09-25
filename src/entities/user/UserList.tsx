@@ -1,29 +1,40 @@
-import { DeleteOutlined, EditOutlined, ExportOutlined, MailOutlined, SearchOutlined, SyncOutlined } from '@ant-design/icons';
-import { useSessionStorageState, useSize } from 'ahooks';
-import { Button, Drawer, Dropdown, Space, Table, Tag, Tooltip } from 'antd';
-import { ColumnsType } from 'antd/es/table';
-import { TableRowSelection } from 'antd/es/table/interface';
-import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { BackTopButton } from 'app/shared/components/BackTopButton';
-import { DeleteDialog } from 'app/shared/components/DeleteDialog';
-import { DotIcon } from 'app/shared/components/DotIcon';
-import { FormDialog } from 'app/shared/components/FormDialog';
-import { MirketOTPCodeIcon } from 'app/shared/components/icons/MirketOTPCodeIcon';
-import { PushNotificationIcon } from 'app/shared/components/icons/PushNotificationIcon';
-import { SMSTokenIcon } from 'app/shared/components/icons/SMSTokenIcon';
-import { TestSenderIcon } from 'app/shared/components/icons/TestSenderIcon';
-import { ThreeDotDropdown } from 'app/shared/components/ThreeDotDropdown';
-import useMirketPortal from 'app/shared/hooks/useMirketPortal';
-import { AdminProfileInt } from 'app/shared/model/AdminModel';
-import { IParticipant, ParticipantStatusInt, ParticipantTypeInt, SenderTypeInt } from 'app/shared/model/participant.model';
-import { VerificationStatusInt } from 'app/shared/model/tenant.model';
-import { IQueryParams } from 'app/shared/reducers/reducer.utils';
-import { getColorByType } from 'app/shared/util/UtilityService';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AddUserWizard } from './AddUserWizard';
-import { UserDetailForm } from './forms/UserDetailForm';
-import { TableToolbar } from './TableToolbar';
+import {
+  DeleteOutlined,
+  EditOutlined,
+  ExportOutlined,
+  MailOutlined,
+  SearchOutlined,
+  SyncOutlined,
+} from "@ant-design/icons";
+import { useSessionStorageState, useSize, useWhyDidYouUpdate } from "ahooks";
+import { Button, Drawer, Dropdown, Space, Table, Tag, Tooltip } from "antd";
+import { ColumnsType } from "antd/es/table";
+import { TableRowSelection } from "antd/es/table/interface";
+import { useAppDispatch, useAppSelector } from "app/config/store";
+import { BackTopButton } from "app/shared/components/BackTopButton";
+import { DeleteDialog } from "app/shared/components/DeleteDialog";
+import { DotIcon } from "app/shared/components/DotIcon";
+import { FormDialog } from "app/shared/components/FormDialog";
+import { MirketOTPCodeIcon } from "app/shared/components/icons/MirketOTPCodeIcon";
+import { PushNotificationIcon } from "app/shared/components/icons/PushNotificationIcon";
+import { SMSTokenIcon } from "app/shared/components/icons/SMSTokenIcon";
+import { TestSenderIcon } from "app/shared/components/icons/TestSenderIcon";
+import { ThreeDotDropdown } from "app/shared/components/ThreeDotDropdown";
+import useMirketPortal from "app/shared/hooks/useMirketPortal";
+import {
+  IParticipant,
+  ParticipantStatusInt,
+  ParticipantTypeInt,
+  SenderTypeInt,
+} from "app/shared/model/participant.model";
+import { VerificationStatusInt } from "app/shared/model/tenant.model";
+import { IQueryParams } from "app/shared/reducers/reducer.utils";
+import { getColorByType } from "app/shared/util/UtilityService";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { AddUserWizard } from "./AddUserWizard";
+import { UserDetailForm } from "./forms/UserDetailForm";
+import { TableToolbar } from "./TableToolbar";
 import {
   deleteEntity,
   getEntities,
@@ -32,27 +43,30 @@ import {
   sendChangePasswordMail,
   testSend,
   testSendPush,
-} from './usertemp.reducer';
+} from "./usertemp.reducer";
 
 export const UserList: React.FC = () => {
   const [participantStates, setParticipantStates] = React.useState({
     detailDrawerOpenClose: false,
     infoModalOpenClose: false,
-    selectedAccountId: '',
+    selectedAccountId: "",
     selectedRowKeys: [],
     selectedRows: [],
-    participantUid: '',
-    infoModalMessage: '',
-    infoModalTitle: '',
-    infoModalConfirmButtonText: 'OK',
-    infoModalType: 'success',
+    participantUid: "",
+    infoModalMessage: "",
+    infoModalTitle: "",
+    infoModalConfirmButtonText: "OK",
+    infoModalType: "success",
     infoModalConfirm() {},
   });
   const [refreshing, setRefreshing] = React.useState<boolean>(false);
 
-  const [resultModalOpenClose, setResultModalOpenClose] = React.useState<boolean>(false);
+  const [resultModalOpenClose, setResultModalOpenClose] =
+    React.useState<boolean>(false);
   const [modalOpenClose, setModalOpenClose] = React.useState<boolean>(false);
-  const [searchData, setSearchData] = useSessionStorageState<Partial<IQueryParams>>('user-pagination', {
+  const [searchData, setSearchData] = useSessionStorageState<
+    Partial<IQueryParams>
+  >("user-pagination", {
     defaultValue: {
       page: 0,
       size: 10,
@@ -63,66 +77,100 @@ export const UserList: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [baseObj] = useMirketPortal();
-  const width = useSize(document.querySelector('body'))?.width;
+  const width = useSize(document.querySelector("body"))?.width;
 
-  const userList = useAppSelector(state => state.userTemp.entities);
-  const loading = useAppSelector(state => state.userTemp.loading);
-  const entityCount = useAppSelector(state => state.userTemp.entityCount);
-  const sendVerificationLoading = useAppSelector(state => state.userTemp.sendVerificationLoading);
+  const userList = useAppSelector((state) => state.userTemp.entities);
+  const loading = useAppSelector((state) => state.userTemp.loading);
+  const entityCount = useAppSelector((state) => state.userTemp.entityCount);
+  const sendVerificationLoading = useAppSelector(
+    (state) => state.userTemp.sendVerificationLoading
+  );
 
   const columns: ColumnsType<IParticipant> = React.useMemo(
     () => [
       {
-        dataIndex: 'username',
-        title: 'USERNAME',
+        dataIndex: "username",
+        title: "USERNAME",
         ellipsis: true,
         render(value, record, index) {
           return (
             <Space
-              className={record?.participantStatus === ParticipantStatusInt.Passive ? 'passive-column' : undefined}
-              direction={width < 540 ? 'vertical' : 'horizontal'}
+              className={
+                record?.participantStatus === ParticipantStatusInt.Passive
+                  ? "passive-column"
+                  : undefined
+              }
+              direction={width < 540 ? "vertical" : "horizontal"}
               align="center"
             >
-              <DotIcon color={getColorByType(ParticipantStatusInt, record?.participantStatus)} size={8} />
+              <DotIcon
+                color={getColorByType(
+                  ParticipantStatusInt,
+                  record?.participantStatus
+                )}
+                size={8}
+              />
 
               <div>{value}</div>
               {record?.participantType === ParticipantTypeInt.LDAP && (
-                <Tag>{Object.values(ParticipantTypeInt)[record?.participantType]?.toString().toUpperCase()}</Tag>
+                <Tag>
+                  {Object.values(ParticipantTypeInt)
+                    [record?.participantType]?.toString()
+                    .toUpperCase()}
+                </Tag>
               )}
             </Space>
           );
         },
       },
       {
-        dataIndex: 'displayName',
-        title: 'DISPLAY NAME',
+        dataIndex: "displayName",
+        title: "DISPLAY NAME",
         ellipsis: true,
         render(value, record, index) {
           return (
-            <div className={record?.participantStatus === ParticipantStatusInt.Passive ? 'passive-column' : undefined}>
+            <div
+              className={
+                record?.participantStatus === ParticipantStatusInt.Passive
+                  ? "passive-column"
+                  : undefined
+              }
+            >
               {record?.displayName}
             </div>
           );
         },
       },
       {
-        dataIndex: 'mail',
-        title: 'MAIL',
+        dataIndex: "mail",
+        title: "MAIL",
         ellipsis: true,
         render(value, record, index) {
           return (
-            <div className={record?.participantStatus === ParticipantStatusInt.Passive ? 'passive-column' : undefined}>{record?.mail}</div>
+            <div
+              className={
+                record?.participantStatus === ParticipantStatusInt.Passive
+                  ? "passive-column"
+                  : undefined
+              }
+            >
+              {record?.mail}
+            </div>
           );
         },
       },
       {
-        dataIndex: 'verificationStatus',
-        title: 'TOKEN',
-        responsive: ['md'],
+        dataIndex: "verificationStatus",
+        title: "TOKEN",
+        responsive: ["md"],
         render(value: number, record, index) {
           return (
             <Tag
-              className={record?.participantStatus === ParticipantStatusInt.Passive ? 'passive-column' : undefined}
+              className={
+                record?.participantStatus === ParticipantStatusInt.Passive
+                  ? "passive-column"
+                  : undefined
+              }
               color={getColorByType(VerificationStatusInt, value)}
             >
               {Object.values(VerificationStatusInt)[value]}
@@ -131,8 +179,8 @@ export const UserList: React.FC = () => {
         },
       },
       {
-        dataIndex: 'actions',
-        title: '',
+        dataIndex: "actions",
+        title: "",
         width: 100,
         render(value: any, record: any, index: number) {
           return (
@@ -142,10 +190,14 @@ export const UserList: React.FC = () => {
                 type="link"
                 icon={<SearchOutlined />}
                 onClick={() => {
-                  setParticipantStates(prev => ({ ...prev, participantUid: record?.uid, detailDrawerOpenClose: true }));
+                  setParticipantStates((prev) => ({
+                    ...prev,
+                    participantUid: record?.uid,
+                    detailDrawerOpenClose: true,
+                  }));
                 }}
               >
-                {'Details'}
+                {"Details"}
               </Button>
               {!baseObj?.isReadOnly && (
                 <Button
@@ -156,59 +208,62 @@ export const UserList: React.FC = () => {
                     navigate(`/${baseObj?.basePath}/user/${record.uid}`);
                   }}
                 >
-                  {'Edit'}
+                  {"Edit"}
                 </Button>
               )}
               {!baseObj?.isReadOnly && (
-                <Tooltip title={!record?.mail && 'The user has no mail.'}>
+                <Tooltip title={!record?.mail && "The user has no mail."}>
                   <Button
                     type="link"
                     disabled={!record?.mail}
                     icon={<MailOutlined />}
                     onClick={() => {
-                      setParticipantStates(prev => ({
+                      setParticipantStates((prev) => ({
                         ...prev,
                         infoModalOpenClose: true,
-                        infoModalMessage: 'If you want to send Token Verification, please click on the button below.',
+                        infoModalMessage:
+                          "If you want to send Token Verification, please click on the button below.",
                         infoModalHasMirketToken: false,
-                        infoModalTitle: 'Are you sure to Token Verification?',
-                        infoModalType: 'success',
-                        infoModalConfirmButtonText: 'OK',
+                        infoModalTitle: "Are you sure to Token Verification?",
+                        infoModalType: "success",
+                        infoModalConfirmButtonText: "OK",
                         infoModalConfirm() {
                           onResendVerification(record?.uid);
                         },
                       }));
                     }}
                   >
-                    {'Send Token Verification'}
+                    {"Send Token Verification"}
                   </Button>
                 </Tooltip>
               )}
-              {record?.participantType === ParticipantTypeInt.Local && !baseObj?.isReadOnly && (
-                <Tooltip title={!record?.mail && 'The user has no mail.'}>
-                  <Button
-                    type="link"
-                    disabled={!record?.mail}
-                    icon={<MailOutlined />}
-                    onClick={() => {
-                      setParticipantStates(prev => ({
-                        ...prev,
-                        infoModalOpenClose: true,
-                        infoModalMessage: 'If you want to set password mail, please click on the button below.',
-                        infoModalHasMirketToken: false,
-                        infoModalTitle: 'Are you sure to Set Password Mail?',
-                        infoModalType: 'success',
-                        infoModalConfirmButtonText: 'OK',
-                        infoModalConfirm() {
-                          onResetPassword(record?.uid);
-                        },
-                      }));
-                    }}
-                  >
-                    {'Send Set Password Mail'}
-                  </Button>
-                </Tooltip>
-              )}
+              {record?.participantType === ParticipantTypeInt.Local &&
+                !baseObj?.isReadOnly && (
+                  <Tooltip title={!record?.mail && "The user has no mail."}>
+                    <Button
+                      type="link"
+                      disabled={!record?.mail}
+                      icon={<MailOutlined />}
+                      onClick={() => {
+                        setParticipantStates((prev) => ({
+                          ...prev,
+                          infoModalOpenClose: true,
+                          infoModalMessage:
+                            "If you want to set password mail, please click on the button below.",
+                          infoModalHasMirketToken: false,
+                          infoModalTitle: "Are you sure to Set Password Mail?",
+                          infoModalType: "success",
+                          infoModalConfirmButtonText: "OK",
+                          infoModalConfirm() {
+                            onResetPassword(record?.uid);
+                          },
+                        }));
+                      }}
+                    >
+                      {"Send Set Password Mail"}
+                    </Button>
+                  </Tooltip>
+                )}
               {!baseObj?.isReadOnly && (
                 <Button
                   type="link"
@@ -216,27 +271,34 @@ export const UserList: React.FC = () => {
                   disabled={
                     record?.participantType === ParticipantTypeInt.LDAP &&
                     (record?.participantStatus === ParticipantStatusInt.Lock ||
-                      record?.participantStatus === ParticipantStatusInt.Active ||
-                      record?.participantStatus === ParticipantStatusInt.Syncing)
+                      record?.participantStatus ===
+                        ParticipantStatusInt.Active ||
+                      record?.participantStatus ===
+                        ParticipantStatusInt.Syncing)
                   }
                   icon={<DeleteOutlined />}
                   onClick={() => {
-                    setParticipantStates(prev => ({
+                    setParticipantStates((prev) => ({
                       ...prev,
                       selectedAccountId: record?.uid,
                       infoModalOpenClose: true,
-                      infoModalMessage: 'If you want to delete this user, please click on the button below.',
+                      infoModalMessage:
+                        "If you want to delete this user, please click on the button below.",
                       infoModalHasMirketToken: false,
-                      infoModalTitle: 'Are you sure to Delete This User?',
-                      infoModalType: 'error',
-                      infoModalConfirmButtonText: 'Delete',
+                      infoModalTitle: "Are you sure to Delete This User?",
+                      infoModalType: "error",
+                      infoModalConfirmButtonText: "Delete",
                       infoModalConfirm() {
-                        onDeleteParticipant(record?.uid, baseObj?.accountId, false);
+                        onDeleteParticipant(
+                          record?.uid,
+                          baseObj?.accountId,
+                          false
+                        );
                       },
                     }));
                   }}
                 >
-                  {'Delete'}
+                  {"Delete"}
                 </Button>
               )}
               {!baseObj?.isReadOnly && (
@@ -245,14 +307,18 @@ export const UserList: React.FC = () => {
                   menu={{
                     items: [
                       {
-                        key: 'a',
+                        key: "a",
                         label: (
-                          <Tooltip title={!record?.phone && 'The user has no phone number.'}>
+                          <Tooltip
+                            title={
+                              !record?.phone && "The user has no phone number."
+                            }
+                          >
                             <Button
                               type="link"
                               disabled={!record?.phone}
                               icon={<SMSTokenIcon />}
-                              style={{ width: '100%', justifyContent: 'start' }}
+                              style={{ width: "100%", justifyContent: "start" }}
                               onClick={() => {
                                 dispatch(
                                   testSend({
@@ -263,18 +329,22 @@ export const UserList: React.FC = () => {
                                 // setResultModalOpenClose(true);
                               }}
                             >
-                              {'Sms'}
+                              {"Sms"}
                             </Button>
                           </Tooltip>
                         ),
                       },
                       {
-                        key: 'b',
+                        key: "b",
                         label: (
                           <Button
-                            disabled={baseObj?.isReadOnly || record?.verificationStatus !== VerificationStatusInt.Verified}
+                            disabled={
+                              baseObj?.isReadOnly ||
+                              record?.verificationStatus !==
+                                VerificationStatusInt.Verified
+                            }
                             type="link"
-                            style={{ width: '100%', justifyContent: 'start' }}
+                            style={{ width: "100%", justifyContent: "start" }}
                             icon={<MirketOTPCodeIcon />}
                             onClick={() => {
                               dispatch(
@@ -285,16 +355,20 @@ export const UserList: React.FC = () => {
                               );
                             }}
                           >
-                            {'Mirket OTP'}
+                            {"Mirket OTP"}
                           </Button>
                         ),
                       },
                       {
-                        key: 'c',
+                        key: "c",
                         label: (
                           <Button
-                            disabled={baseObj?.isReadOnly || record?.verificationStatus !== VerificationStatusInt.Verified}
-                            style={{ width: '100%', justifyContent: 'start' }}
+                            disabled={
+                              baseObj?.isReadOnly ||
+                              record?.verificationStatus !==
+                                VerificationStatusInt.Verified
+                            }
+                            style={{ width: "100%", justifyContent: "start" }}
                             type="link"
                             icon={<PushNotificationIcon />}
                             onClick={() => {
@@ -306,23 +380,23 @@ export const UserList: React.FC = () => {
                               );
                             }}
                           >
-                            {'Mirket Push'}
+                            {"Mirket Push"}
                           </Button>
                         ),
                       },
                     ],
                   }}
-                  trigger={['hover', 'click']}
+                  trigger={["hover", "click"]}
                   placement="topLeft"
                 >
                   <Button
                     icon={<TestSenderIcon />}
                     type="link"
-                    onClick={e => {
+                    onClick={(e) => {
                       e.preventDefault();
                     }}
                   >
-                    {'Test Sender'}
+                    {"Test Sender"}
                   </Button>
                 </Dropdown>
               )}
@@ -335,10 +409,10 @@ export const UserList: React.FC = () => {
   );
 
   const onDeleteParticipant = async (uid, accountId, onDetail) => {
-    console.log('🚀 ~ onDeleteParticipant ~ searchData:', searchData);
+    console.log("🚀 ~ onDeleteParticipant ~ searchData:", searchData);
     await dispatch(deleteEntity({ uid, accountId, onDetail, searchData }));
-    setParticipantStates(prev => ({ ...prev, infoModalOpenClose: false }));
-    setResultModalOpenClose(prev => true);
+    setParticipantStates((prev) => ({ ...prev, infoModalOpenClose: false }));
+    setResultModalOpenClose((prev) => true);
   };
 
   const onResendVerification = async (uid: string) => {
@@ -349,18 +423,25 @@ export const UserList: React.FC = () => {
         inDetail: false,
       })
     );
-    setParticipantStates(prev => ({ ...prev, infoModalOpenClose: false }));
-    setResultModalOpenClose(prev => true);
+    setParticipantStates((prev) => ({ ...prev, infoModalOpenClose: false }));
+    setResultModalOpenClose((prev) => true);
   };
 
   const onResetPassword = async (uid: string) => {
     await dispatch(sendChangePasswordMail(uid));
-    setParticipantStates(prev => ({ ...prev, infoModalOpenClose: false }));
-    setResultModalOpenClose(prev => true);
+    setParticipantStates((prev) => ({ ...prev, infoModalOpenClose: false }));
+    setResultModalOpenClose((prev) => true);
   };
 
-  const onSelectChange = (newSelectedRowKeys: string[], selectedRows: IParticipant[]) => {
-    setParticipantStates(prev => ({ ...prev, selectedRowKeys: newSelectedRowKeys, selectedRows }));
+  const onSelectChange = (
+    newSelectedRowKeys: string[],
+    selectedRows: IParticipant[]
+  ) => {
+    setParticipantStates((prev) => ({
+      ...prev,
+      selectedRowKeys: newSelectedRowKeys,
+      selectedRows,
+    }));
   };
 
   const rowSelection: TableRowSelection<IParticipant> = {
@@ -382,12 +463,12 @@ export const UserList: React.FC = () => {
   }, [searchData]);
 
   React.useEffect(() => {
-    setParticipantStates(prev => ({ ...prev, selectedRowKeys: [] }));
+    setParticipantStates((prev) => ({ ...prev, selectedRowKeys: [] }));
   }, [userList]);
 
   React.useEffect(() => {
     return () => {
-      sessionStorage.removeItem('user-pagination');
+      sessionStorage.removeItem("user-pagination");
     };
   }, []);
 
@@ -417,7 +498,7 @@ export const UserList: React.FC = () => {
 
               <Tooltip title="Refresh" trigger="hover">
                 <Button
-                  style={{ marginLeft: '10px' }}
+                  style={{ marginLeft: "10px" }}
                   type="default"
                   disabled={refreshing}
                   onClick={handleRefresh}
@@ -429,7 +510,7 @@ export const UserList: React.FC = () => {
         }
       />
       <Table
-        rowKey={'uid'}
+        rowKey={"uid"}
         tableLayout="fixed"
         rowSelection={baseObj?.isReadOnly ? null : rowSelection}
         columns={columns}
@@ -437,15 +518,20 @@ export const UserList: React.FC = () => {
         loading={loading}
         pagination={{
           showSizeChanger: true,
-          current: searchData.page + 1,
-          pageSize: searchData.size,
+          current: searchData?.page + 1,
+          pageSize: searchData?.size,
           total: entityCount,
-          showTotal: total => (
+          showTotal: (total) => (
             <div>
-              Total <b>{total}</b> {`${total === 1 ? 'item' : 'items'}`}
+              Total <b>{total}</b> {`${total === 1 ? "item" : "items"}`}
             </div>
           ),
-          onChange: (page, pageSize) => setSearchData(prev => ({ ...prev, page: page - 1, size: pageSize })),
+          onChange: (page, pageSize) =>
+            setSearchData((prev) => ({
+              ...prev,
+              page: page - 1,
+              size: pageSize,
+            })),
         }}
       />
       <FormDialog
@@ -457,7 +543,11 @@ export const UserList: React.FC = () => {
         maxWidth={700}
         footer={null}
       >
-        <AddUserWizard setModalOpenClose={setModalOpenClose} setResultModalOpenClose={setResultModalOpenClose} searchParams={searchData} />
+        <AddUserWizard
+          setModalOpenClose={setModalOpenClose}
+          setResultModalOpenClose={setResultModalOpenClose}
+          searchParams={searchData}
+        />
       </FormDialog>
 
       <DeleteDialog
@@ -467,12 +557,17 @@ export const UserList: React.FC = () => {
         title={participantStates?.infoModalTitle}
         open={participantStates?.infoModalOpenClose}
         okText={participantStates?.infoModalConfirmButtonText}
-        okType={participantStates?.infoModalType === 'error' ? 'danger' : 'primary'}
+        okType={
+          participantStates?.infoModalType === "error" ? "danger" : "primary"
+        }
         iconFade={true}
         confirmLoading={loading || sendVerificationLoading}
         onOk={participantStates?.infoModalConfirm}
         onCancel={() => {
-          setParticipantStates(prev => ({ ...prev, infoModalOpenClose: false }));
+          setParticipantStates((prev) => ({
+            ...prev,
+            infoModalOpenClose: false,
+          }));
         }}
       />
       {/* <WarnDialog
@@ -491,7 +586,10 @@ export const UserList: React.FC = () => {
         title="User Details"
         closable={true}
         onClose={() => {
-          setParticipantStates(prev => ({ ...prev, detailDrawerOpenClose: false }));
+          setParticipantStates((prev) => ({
+            ...prev,
+            detailDrawerOpenClose: false,
+          }));
         }}
         open={participantStates?.detailDrawerOpenClose}
       >

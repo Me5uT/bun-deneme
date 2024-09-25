@@ -60,7 +60,7 @@ const TOTPQRCode = () => {
           <div className="activation-logo-container">
             <img
               className="activation-logo"
-              src={"src/assets/images/mirket2020_Logotype-Dark.png"}
+              src={"/assets/images/mirket2020_Logotype-Dark.png"}
               alt="mirket-logo"
             />
           </div>

@@ -1,6 +1,6 @@
-import { ITenant, VerificationStatusInt } from 'app/shared/model/tenant.model';
-import { IQueryParams } from '../reducers/reducer.utils';
-import { EGroupType, TransferActions } from './GroupModel';
+import { ITenant, VerificationStatusInt } from "./tenant.model";
+import { IQueryParams } from "../reducers/reducer.utils";
+import { EGroupType, TransferActions } from "./GroupModel";
 
 export interface IParticipant {
   id?: number;
@@ -125,10 +125,10 @@ export interface IParticipantTestSenderRequestModel {
 }
 
 export enum SenderType {
-  SMS = 'SMS',
-  MIRKETOTP = 'MIRKET OTP',
-  MIRKETPUSH = 'MIRKET PUSH',
-  MAIL = 'MAIL',
+  SMS = "SMS",
+  MIRKETOTP = "MIRKET OTP",
+  MIRKETPUSH = "MIRKET PUSH",
+  MAIL = "MAIL",
 }
 
 export enum SenderTypeInt {

@@ -1,7 +1,6 @@
-import dayjs from 'dayjs';
-import { ITenant } from 'app/shared/model/tenant.model';
-import { IParticipant } from 'app/shared/model/participant.model';
-import { IParticipantGroup } from 'app/shared/model/participant-group.model';
+import { ITenant } from "./tenant.model";
+import { IParticipant } from "./participant.model";
+import { IParticipantGroup } from "./participant-group.model";
 
 export interface IParticipantGroupRelation {
   id?: number;

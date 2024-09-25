@@ -7,8 +7,11 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      app: path.resolve(__dirname, "src"), // 'src' klasörünüzdeki 'app' dizinine yönlendirir
+      app: path.resolve(__dirname, "./src"), // 'src' klasörünüzdeki 'app' dizinine yönlendirir
     },
+  },
+  preview: {
+    port: 9000,
   },
   server: {
     port: 9000,

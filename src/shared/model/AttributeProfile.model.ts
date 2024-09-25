@@ -1,4 +1,4 @@
-import { ITenant } from 'app/shared/model/tenant.model';
+import { ITenant } from "./tenant.model";
 
 export interface IAttributeProfile {
   uid: string;

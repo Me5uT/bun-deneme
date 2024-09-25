@@ -1,4 +1,3 @@
-import axios from "axios";
 import dayjs from "dayjs";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 

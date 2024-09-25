@@ -1,5 +1,5 @@
-import { IAttributeProfile } from 'app/shared/model/AttributeProfile.model';
-import { ITenant } from 'app/shared/model/tenant.model';
+import { IAttributeProfile } from "./AttributeProfile.model";
+import { ITenant } from "./tenant.model";
 
 export interface IGateway {
   id?: number;
@@ -126,14 +126,14 @@ export enum GatewayStatusInt {
   Offline,
 }
 export enum GatewayStatus {
-  Active = 'Active',
-  Passive = 'Passive',
-  Offline = 'Offline',
+  Active = "Active",
+  Passive = "Passive",
+  Offline = "Offline",
 }
 
 export enum LdapType {
-  ActiveDirectory = 'Active Directory',
-  Others = 'Others',
+  ActiveDirectory = "Active Directory",
+  Others = "Others",
 }
 
 export enum LdapTypeInt {

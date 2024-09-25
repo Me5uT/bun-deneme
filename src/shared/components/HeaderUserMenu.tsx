@@ -10,7 +10,7 @@ const HeaderUserMenu: React.FC = () => {
       label: (
         <img
           alt="Logo"
-          src={"src/assets/images/blank.png"}
+          src={"assets/images/blank.png"}
           style={{ width: "50px", height: "50px", borderRadius: "0.475rem" }}
         />
       ),
@@ -28,7 +28,7 @@ const HeaderUserMenu: React.FC = () => {
             >
               <img
                 alt="Logo"
-                src={"src/assets/images/blank.png"}
+                src={"/assets/images/blank.png"}
                 style={{
                   width: "60px",
                   height: "60px",

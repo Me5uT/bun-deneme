@@ -1,5 +1,5 @@
-import { IAttributeProfile } from 'app/shared/model/AttributeProfile.model';
-import { ITenant } from 'app/shared/model/tenant.model';
+import { IAttributeProfile } from "./AttributeProfile.model";
+import { ITenant } from "./tenant.model";
 
 export interface IGroup {
   id?: number;
@@ -59,7 +59,8 @@ export interface IEditGroupUsers {
   isAllParticipantsIncluded?: boolean;
 }
 
-export interface IEditGroupExternalSourceRequest extends IEditGroupExternalSource {
+export interface IEditGroupExternalSourceRequest
+  extends IEditGroupExternalSource {
   groupId: string;
 }
 

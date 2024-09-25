@@ -28,7 +28,7 @@ export const GeneralDashboardCard: React.FC<IGeneralDashboardCardProps> = ({
   >
     <div className="card-header">
       <img
-        src={"src/assets/images/logo.png"}
+        src={"/assets/images/logo.png"}
         alt="company-logo"
         className="card-logo"
       />

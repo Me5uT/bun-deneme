@@ -13,7 +13,7 @@ const DragAndDropAnimation: React.FC = () => {
       }}
     >
       <img
-        src={"src/assets/images/dragdrop.gif"}
+        src={"/assets/images/dragdrop.gif"}
         alt={"animation.gif"}
         style={{ width: "75px" }}
       />

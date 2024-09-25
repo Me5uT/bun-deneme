@@ -1,11 +1,11 @@
-import { BarsOutlined, QuestionOutlined } from "@ant-design/icons";
+import { BarsOutlined } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Menu, MenuProps, Space, Tag, Tooltip } from "antd";
-import { DotIcon } from "app/shared/components/DotIcon";
-import { MenuItemText } from "app/shared/components/MenuItemText";
-import useMirketPortal from "app/shared/hooks/useMirketPortal";
-import { LicenceTypeInt, TenantTypeInt } from "app/shared/model/tenant.model";
-import { getColorByType, openNewTab } from "app/shared/util/UtilityService";
+import { DotIcon } from "../../components/DotIcon";
+import { MenuItemText } from "../../components/MenuItemText";
+import useMirketPortal from "../..//hooks/useMirketPortal";
+import { LicenceTypeInt, TenantTypeInt } from "../..//model/tenant.model";
+import { getColorByType, openNewTab } from "../..//util/UtilityService";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 export interface IHeaderProps {
@@ -306,7 +306,7 @@ const AppHeader: React.FC = () => {
             alt="Logo"
             loading="lazy"
             width={115}
-            src={"src/assets/images/mirket2020_Logotype-Dark.png"}
+            src={"/assets/images/mirket2020_Logotype-Dark.png"}
           />
         </Link>
       </div>

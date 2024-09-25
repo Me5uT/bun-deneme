@@ -1,5 +1,3 @@
-import dayjs from 'dayjs';
-
 export interface ISystemSetting {
   id?: number;
   uid?: string;

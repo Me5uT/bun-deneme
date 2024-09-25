@@ -1,8 +1,7 @@
-import { animated, useSpring } from "@react-spring/web";
+import { useSpring } from "@react-spring/web";
 import { Alert, Button, Card, Checkbox, Form, Input, Row, Space } from "antd";
-import { useAppDispatch, useAppSelector } from "app/config/store";
+import { useAppSelector } from "app/config/store";
 import React from "react";
-import { useForm } from "react-hook-form";
 import { Navigate, useLocation } from "react-router-dom";
 
 interface ILoginFormProps {
@@ -62,7 +61,7 @@ export const LoginForm: React.FC<ILoginFormProps> = ({ setIsFlipped }) => {
             alt="login-logo"
             width={200}
             loading="lazy"
-            src={"src/assets/images/mirket2020_Logotype-Dark.png"}
+            src={"/assets/images/mirket2020_Logotype-Dark.png"}
           />
         </Row>
         <Row justify={"center"} style={{ margin: "24px 0px" }}>

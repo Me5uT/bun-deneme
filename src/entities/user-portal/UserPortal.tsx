@@ -192,7 +192,7 @@ export const UserPortal: React.FC = () => {
                 width={140}
                 alt="example"
                 loading="lazy"
-                src={"src/assets/images/mirketOTP1.png"}
+                src={"/assets/images/mirketOTP1.png"}
               />
               <Meta title="Mirket OTP" style={{ textAlign: "center" }} />
             </Space>
@@ -246,7 +246,7 @@ export const UserPortal: React.FC = () => {
                 width={140}
                 alt="example"
                 loading="lazy"
-                src={"src/assets/images/mirketPush1.png"}
+                src={"/assets/images/mirketPush1.png"}
               />
               <Meta
                 title="Mirket Push Notification"
@@ -312,7 +312,7 @@ export const UserPortal: React.FC = () => {
                 width={140}
                 alt="example"
                 loading="lazy"
-                src={"src/assets/images/mirketSMS1.png"}
+                src={"/assets/images/mirketSMS1.png"}
               />
               <Meta title="SMS" style={{ textAlign: "center" }} />
             </Space>
@@ -366,7 +366,7 @@ export const UserPortal: React.FC = () => {
                 width={140}
                 alt="example"
                 loading="lazy"
-                src={"src/assets/images/mirketToken1.png"}
+                src={"/assets/images/mirketToken1.png"}
               />
               <Meta title="Mirket Token" style={{ textAlign: "center" }} />
             </Space>
@@ -416,7 +416,7 @@ export const UserPortal: React.FC = () => {
                 width={140}
                 alt="example"
                 loading="lazy"
-                src={"src/assets/images/mirketTOTP1.png"}
+                src={"/assets/images/mirketTOTP1.png"}
               />
               <Meta title="Mirket TOTP" style={{ textAlign: "center" }} />
             </Space>

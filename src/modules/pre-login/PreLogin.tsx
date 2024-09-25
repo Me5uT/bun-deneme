@@ -13,7 +13,7 @@ export const PreLogin: React.FC<PreLoginProps> = ({
 
   React.useEffect(() => {
     if (otpInputRef.current) {
-      otpInputRef.current.focus();
+      otpInputRef?.current?.focus();
     }
   }, []);
 
@@ -39,7 +39,7 @@ export const PreLogin: React.FC<PreLoginProps> = ({
       <img
         alt="pre-login-logo"
         width={80}
-        src={"src/assets/images/mirket-mini-logo.jpg"}
+        src={"/assets/images/mirket-mini-logo.jpg"}
       />
       <Typography.Title level={4} style={{ textAlign: "center" }}>
         Mirket Token

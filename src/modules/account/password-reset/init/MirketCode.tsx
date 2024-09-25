@@ -32,7 +32,7 @@ export const MirketCode: React.FC<MirketCodeProps> = ({
   return (
     <div>
       <Space direction="vertical" align="center">
-        <img alt="login-logo" width={60} src={"src/assets/images/phone.png"} />
+        <img alt="login-logo" width={60} src={"assets/images/phone.png"} />
 
         <Title level={4}> Multi-Factor Verification </Title>
         <Text type="secondary">

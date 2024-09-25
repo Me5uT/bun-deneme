@@ -1,5 +1,5 @@
 import React from "react";
-import { Storage } from "app/shared/util/LocalStorage";
+import { Storage } from "../shared/util/LocalStorage";
 import dayjs from "dayjs";
 
 export interface IDurationFormat {
