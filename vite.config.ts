@@ -17,7 +17,7 @@ export default defineConfig({
     port: 9000,
     proxy: {
       "/api": {
-        target: "http://localhost:8080", // 8080 portundaki backend'e yönlendirme
+        target: "http://localhost:8089", // 8080 portundaki backend'e yönlendirme
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
