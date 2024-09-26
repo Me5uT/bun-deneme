@@ -4,7 +4,18 @@ import { Storage } from "../shared/util/LocalStorage";
 
 const TIMEOUT = 1 * 60 * 1000;
 axios.defaults.timeout = TIMEOUT;
-axios.defaults.baseURL = "http://localhost:8080"; // SERVER_API_URL;
+console.log("🚀 ~ axios.defaults.baseURL:", axios.defaults.baseURL);
+
+if (import.meta.env.MODE === "development") {
+  axios.defaults.baseURL = import.meta.env.VITE_API_DEV_URL;
+  console.log("Development ortamında çalışıyor");
+} else if (import.meta.env.MODE === "production") {
+  axios.defaults.baseURL = import.meta.env.VITE_API_PROD_URL;
+  console.log("Production ortamında çalışıyor");
+} else {
+  axios.defaults.baseURL = "http://localhost:8080";
+  console.log(`Custom mod: ${import.meta.env.MODE}`);
+}
 
 const setupAxiosInterceptors = (onUnauthenticated) => {
   const onRequestSuccess = (config: AxiosRequestConfig<any>) => {
