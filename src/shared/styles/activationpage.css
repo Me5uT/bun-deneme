@@ -1,0 +1,88 @@
+.activation-page {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+.activation-page .ant-result-subtitle {
+  font-size: 15px !important;
+}
+.activation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 750px;
+  margin: 25px;
+  padding: 20px;
+  background-color: #fff;
+  justify-content: center;
+}
+.activation-logo-container {
+  margin-bottom: 20px;
+}
+.activation-logo {
+  width: 150px;
+}
+.activation-title1,
+.activation-title2,
+.activation-title3,
+.activation-desc1,
+.activation-desc2,
+.activation-desc3,
+.activation-desc4,
+.activation-desc5 {
+  margin: 10px auto;
+  text-align: center;
+}
+.activation-title1,
+.activation-title2,
+.activation-title3 {
+  font-size: 1.5em;
+}
+.activation-desc1,
+.activation-desc2,
+.activation-desc3,
+.activation-desc4,
+.activation-desc5 {
+  font-size: 1em;
+}
+.activation-badges-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  max-width: 438px;
+  /* flex-direction: column;
+    align-items: center;
+    */
+}
+.activation-badges-container img {
+  height: 60px;
+  width: 180px;
+}
+.activation-badges-container > * {
+  padding: 8px;
+}
+@media screen and (max-width: 550px) {
+  .activation-badges-container {
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+.activation-active-button-container {
+  margin: 20px 0;
+}
+
+.qr-code-container {
+  margin: 20px 0;
+}
+.activation-warning-section {
+  display: flex;
+  align-items: center;
+}
+.activation-warning-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 8px;
+  padding-left: 15px;
+}

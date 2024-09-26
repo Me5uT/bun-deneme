@@ -1,15 +1,16 @@
 /* eslint-disable no-constant-condition */
-import { animated, useSpring, useTrail } from '@react-spring/web';
-import { Button, Modal, ModalProps, Typography } from 'antd';
-import React from 'react';
+import { animated, useSpring } from "@react-spring/web";
+import { Button, Modal, ModalProps, Typography } from "antd";
+import React from "react";
+import "../../shared/styles/modal.css";
 
 interface IInformationDialogProps extends ModalProps {
-  modalType?: 'success' | 'error';
+  modalType?: "success" | "error";
   message?: string;
   onClose?: () => void;
 }
 
-const WarnDialogComponent: React.FC<IInformationDialogProps> = props => {
+const WarnDialogComponent: React.FC<IInformationDialogProps> = (props) => {
   const animationStyle = useSpring({
     strokeDashoffset: props.open ? 0 : 100,
     config: { duration: 1000 },
@@ -45,24 +46,30 @@ const WarnDialogComponent: React.FC<IInformationDialogProps> = props => {
       {...props}
       destroyOnClose={props.destroyOnClose ? props?.destroyOnClose : true}
       style={{
-        borderRadius: '12px',
-        padding: '36px',
-        textAlign: 'center',
+        borderRadius: "12px",
+        padding: "36px",
+        textAlign: "center",
       }}
-      styles={{ footer: { display: 'flex', justifyContent: 'center', alignItems: 'center' } }}
+      styles={{
+        footer: {
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        },
+      }}
       footer={[
         <Button
-          key={'asd'}
+          key={"asd"}
           style={{
-            color: props.modalType === 'error' && 'blue',
-            backgroundColor: props.modalType === 'error' && 'lavender',
-            border: 'none',
-            fontWeight: 'normal',
-            padding: '10px 24px',
-            margin: '20px 0px',
-            height: 'auto',
+            color: props.modalType === "error" && "blue",
+            backgroundColor: props.modalType === "error" && "lavender",
+            border: "none",
+            fontWeight: "normal",
+            padding: "10px 24px",
+            margin: "20px 0px",
+            height: "auto",
           }}
-          type={'primary'}
+          type={"primary"}
           onClick={props.onClose}
         >
           Ok, got it!
@@ -70,8 +77,15 @@ const WarnDialogComponent: React.FC<IInformationDialogProps> = props => {
       ]}
       closable={false}
     >
-      <div style={{ textAlign: 'center' }}>
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '20px', position: 'relative' }}>
+      <div style={{ textAlign: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "20px",
+            position: "relative",
+          }}
+        >
           <animated.svg
             width="100"
             height="100"
@@ -82,33 +96,44 @@ const WarnDialogComponent: React.FC<IInformationDialogProps> = props => {
                   range: [0, 0.25, 0.5, 0.75, 1],
                   output: [0, -5, 5, -5, 0],
                 })
-                .to(x => `translateX(${x}px)`),
+                .to((x) => `translateX(${x}px)`),
             }}
           >
-            <circle cx="25" cy="25" r="22" fill="none" stroke={props.modalType === 'success' ? '#a1e4b6' : '#f6a8a8'} strokeWidth="3" />
+            <circle
+              cx="25"
+              cy="25"
+              r="22"
+              fill="none"
+              stroke={props.modalType === "success" ? "#a1e4b6" : "#f6a8a8"}
+              strokeWidth="3"
+            />
             <animated.path
               fill="none"
-              stroke={props.modalType === 'success' ? 'green' : 'red'}
+              stroke={props.modalType === "success" ? "green" : "red"}
               strokeWidth="3"
               strokeLinecap="round"
               strokeDasharray={100}
               strokeDashoffset={animationStyle.strokeDashoffset}
-              d={props.modalType === 'success' ? 'M14,26 L22,34 L36,18' : 'M16,16 L34,34 M34,16 L16,34'}
+              d={
+                props.modalType === "success"
+                  ? "M14,26 L22,34 L36,18"
+                  : "M16,16 L34,34 M34,16 L16,34"
+              }
             />
           </animated.svg>
-          {props.modalType === 'success' &&
+          {props.modalType === "success" &&
             stars.map((_, index) => (
               <animated.div
-                className={'star'}
+                className={"star"}
                 key={index}
                 style={{
                   ...starAnimations[index],
-                  position: 'absolute',
+                  position: "absolute",
                   top: `${Math.random() * 100}%`,
                   left: `${Math.random() * 100}%`,
 
-                  backgroundColor: 'yellow',
-                  borderRadius: '50%',
+                  backgroundColor: "yellow",
+                  borderRadius: "50%",
                 }}
               />
             ))}
@@ -116,9 +141,9 @@ const WarnDialogComponent: React.FC<IInformationDialogProps> = props => {
       </div>
       <Typography.Text
         style={{
-          fontSize: '16px',
-          fontWeight: 'normal',
-          margin: '30px 0px',
+          fontSize: "16px",
+          fontWeight: "normal",
+          margin: "30px 0px",
         }}
       >
         {props.message}

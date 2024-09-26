@@ -1,3 +1,5 @@
+import "../../shared/styles/activationpage.css";
+
 import { WarningFilled } from "@ant-design/icons";
 import { useSetState } from "ahooks";
 import { Button, QRCode, Result, Spin } from "antd";

@@ -1,3 +1,4 @@
+import "../../styles/header.css";
 import { BarsOutlined } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Menu, MenuProps, Space, Tag, Tooltip } from "antd";

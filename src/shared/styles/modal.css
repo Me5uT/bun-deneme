@@ -1,0 +1,21 @@
+.delete-modal-input-container .ant-otp-input {
+  font-size: 36px;
+  font-weight: bolder;
+  color: #0d2b51;
+  padding: 5px 15px !important;
+}
+
+.star {
+  width: 10px;
+  aspect-ratio: 1;
+  background: #f8ca00;
+  clip-path: polygon(
+    50% 0,
+    calc(50% * (1 + sin(0.4turn))) calc(50% * (1 - cos(0.4turn))),
+    calc(50% * (1 - sin(0.2turn))) calc(50% * (1 - cos(0.2turn))),
+    calc(50% * (1 + sin(0.2turn))) calc(50% * (1 - cos(0.2turn))),
+    calc(50% * (1 - sin(0.4turn))) calc(50% * (1 - cos(0.4turn)))
+  );
+
+  /* clip-path: polygon(50% 0, 79% 90%, 2% 35%, 98% 35%, 21% 90%); */
+}

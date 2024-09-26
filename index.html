@@ -13,12 +13,12 @@
     <meta name="theme-color" content="#000000" />
 
     <!-- For Clean Cache. Will Delete Later -->
-    <meta
+    <!-- <meta
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
     />
     <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Expires" content="0" /> -->
     <!-- For Clean Cache. Will Delete Later -->
     <meta
       http-equiv="Content-Security-Policy"
@@ -29,8 +29,8 @@
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/assets/loading.css" />
-    <link rel="stylesheet" href="/src/index.css" />
-    <link
+    <!-- <link rel="stylesheet" href="/src/index.css" /> -->
+    <!-- <link
       rel="preload"
       href="/assets/font/Poppins/Regular.ttf"
       as="font"
@@ -53,9 +53,31 @@
       type="font/ttf"
       onload="this.onload=null;this.rel='stylesheet'"
       crossorigin="anonymous"
-    />
+    /> -->
 
-    <style></style>
+    <style>
+      @font-face {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/assets/font/Poppins/Regular.ttf") format("truetype");
+      }
+      @font-face {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url("/assets/font/Poppins/Poppins-SemiBold.ttf") format("truetype");
+      }
+      @font-face {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("/assets/font/Poppins/Poppins-Bold.ttf") format("truetype");
+      }
+    </style>
   </head>
   <body>
     <div id="root">

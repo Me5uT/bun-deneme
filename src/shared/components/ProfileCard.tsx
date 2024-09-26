@@ -1,8 +1,9 @@
-import { Avatar, Space, Tag, Tooltip } from 'antd';
-import React from 'react';
-import { GatewayStatusInt } from '../model/gateway.model';
-import { StatusInt, VerificationStatusInt } from '../model/tenant.model';
-import { StatusIcon } from './StatusIcon';
+import "../../shared/styles/card.css";
+import { Avatar, Space, Tag, Tooltip } from "antd";
+import React from "react";
+import { GatewayStatusInt } from "../model/gateway.model";
+import { StatusInt, VerificationStatusInt } from "../model/tenant.model";
+import { StatusIcon } from "./StatusIcon";
 interface IProfileCardProps {
   avatarImg?: string;
   title?: string;
@@ -32,7 +33,11 @@ const ProfileCardComponent: React.FC<IProfileCardProps> = ({
         <div className="card">
           <div className="card-decor" style={{ background: backgroundColor }} />
           <div className="firstinfo">
-            <Avatar icon={avatarImg || title?.charAt(0).toUpperCase()} size={86} style={{ backgroundColor: avatarColor }}></Avatar>
+            <Avatar
+              icon={avatarImg || title?.charAt(0).toUpperCase()}
+              size={86}
+              style={{ backgroundColor: avatarColor }}
+            ></Avatar>
             <div className="profileinfo">
               <Space direction="horizontal">
                 <h1>{title}</h1>
@@ -42,7 +47,7 @@ const ProfileCardComponent: React.FC<IProfileCardProps> = ({
                   </label>
                 </Tooltip>
               </Space>
-              {tagText && <Tag color={tagColor || 'blue'}>{tagText}</Tag>}
+              {tagText && <Tag color={tagColor || "blue"}>{tagText}</Tag>}
               <p className="bio">{description}</p>
             </div>
           </div>

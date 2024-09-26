@@ -1,3 +1,4 @@
+import "../../shared/styles/dashboard.css";
 import { Col, Row, Space, Tag } from "antd";
 import { useAppDispatch, useAppSelector } from "app/config/store";
 import { DashboardCard } from "app/shared/components/DashboardCard";

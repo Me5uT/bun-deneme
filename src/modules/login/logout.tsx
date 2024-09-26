@@ -1,12 +1,12 @@
-import React, { useLayoutEffect } from 'react';
-
-import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { logout } from 'app/shared/reducers/authentication';
-import { Button, Card, Result } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import "../../shared/styles/logout.css";
+import React, { useLayoutEffect } from "react";
+import { useAppDispatch, useAppSelector } from "app/config/store";
+import { logout } from "app/shared/reducers/authentication";
+import { Button, Result } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export const Logout = () => {
-  const logoutUrl = useAppSelector(state => state.authentication.logoutUrl);
+  const logoutUrl = useAppSelector((state) => state.authentication.logoutUrl);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -26,19 +26,19 @@ export const Logout = () => {
         style={{
           width: 500,
           height: 500,
-          backgroundColor: '#ffffff',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: '8px',
+          backgroundColor: "#ffffff",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "8px",
         }}
         extra={[
           <Button
-            key={'login'}
+            key={"login"}
             type="default"
             onClick={() => {
-              navigate('/login');
+              navigate("/login");
             }}
           >
             Login

@@ -1,9 +1,10 @@
+import "../../shared/styles/dashboard.css";
 import Icon, {
   ClockCircleOutlined,
   DollarOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Card, Col, Progress, Row, Space } from "antd";
+import { Card } from "antd";
 import React from "react";
 interface IGeneralDashboardCardProps {
   title: string;
