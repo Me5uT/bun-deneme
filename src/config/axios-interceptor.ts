@@ -4,7 +4,6 @@ import { Storage } from "../shared/util/LocalStorage";
 
 const TIMEOUT = 1 * 60 * 1000;
 axios.defaults.timeout = TIMEOUT;
-console.log("🚀 ~ axios.defaults.baseURL:", axios.defaults.baseURL);
 
 if (import.meta.env.MODE === "development") {
   axios.defaults.baseURL = import.meta.env.VITE_API_DEV_URL;
